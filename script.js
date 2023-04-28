@@ -1,5 +1,4 @@
 const button = document.querySelectorAll(".btn");
-console.log(button);
 const display = document.querySelector(".display");
 const trigno = document.querySelectorAll(".trigno");
 const display2 = document.querySelector(".display2");
@@ -7,9 +6,7 @@ const memoryElement = document.querySelectorAll(".memory");
 
 const operator = ["+", "-", "*", "/"];
 
-console.log(memoryElement[0].textContent);
 
-console.log(trigno[0].textContent === "sin");
 
 // calculation function
 const calculatFactorial = (n) => {
@@ -25,10 +22,7 @@ const calculatFactorial = (n) => {
   }
   return answer;
 };
-console.debug(
-  "🚀 ~ file: script.js:16 ~ calculatFactorial ~ calculatFactorial:",
-  calculatFactorial(1)
-);
+
 
 let memoryArray = [];
 // select button
@@ -37,11 +31,9 @@ button.forEach((btn) =>
   btn.addEventListener("click", () => {
     const buttonValue = btn.value;
 
-    console.log(typeof btn.value);
 
     let displayText = display.innerHTML;
 
-    console.log(displayText);
     const factorialIndex = displayText.indexOf("!");
     const rightIndex = displayText.slice(0, factorialIndex + 1);
     switch (buttonValue) {
@@ -58,7 +50,6 @@ button.forEach((btn) =>
         displayText = displayText.replaceAll("e", "Math.E");
         displayText = displayText.replaceAll("^", "**");
         displayText = displayText.replaceAll("fact(", `calculatFactorial(`);
-        // displayText = displayText.replaceAll(`!`,`${calculatFactorial(n)}`)
 
         displayText = displayText.replaceAll("π", `Math.PI`);
 
@@ -71,38 +62,26 @@ button.forEach((btn) =>
               indexLeft + 1,
               rightIndex.length + 1
             );
-            console.debug("🚀 ~ file: test.js:28 ~ n:", answerValue);
             const value = rightIndex.slice(
               indexLeft + 1,
               rightIndex.length - 1
             );
-            console.debug(
-              "🚀 ~ file: script.js:81 ~ btn.addEventListener ~ value:",
-              value
-            );
-            console.debug("🚀 ~ file: test.js:29 ~ value:", value);
+          
+  
             displayText = displayText.replaceAll(
               answerValue,
               `${calculatFactorial(value)}`
             );
 
-            console.debug(
-              "🚀 ~ file: script.js:86 ~ btn.addEventListener ~ displayText:",
-              displayText
-            );
           }
         }
 
-        console.log(displayText);
 
         display2.innerHTML = display.innerHTML;
         try {
           display.textContent = `=${this.eval(displayText).toFixed(2)}`;
         } catch (error) {
-          console.debug(
-            "🚀 ~ file: script.js:100 ~ btn.addEventListener ~ error:",
-            error
-          );
+       
           display.textContent = "error";
         }
 
@@ -226,7 +205,5 @@ button.forEach((btn) =>
         }
         display.innerHTML += btn.value;
     }
-    // console.log( display.textContent.slice(1,display.textContent.length-1))
-    console.log(display.innerText);
   })
 );
